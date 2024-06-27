@@ -98,7 +98,3 @@ vim.opt.guifont = 'Hack NFM:h10'
 
 -- Put a little extra space between the lines
 vim.opt.linespace = 1
-
--- Don't automatically put comment leader on a newline when opening
--- vim.opt.formatoptions='jcroql' -- original values
-vim.opt.formatoptions = 'jcrql'

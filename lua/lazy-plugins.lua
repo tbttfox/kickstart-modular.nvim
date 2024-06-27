@@ -23,8 +23,18 @@ require('lazy').setup({
   --    require('Comment').setup({})
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  {
+    'numToStr/Comment.nvim',
+    opts = { ignore = '^\\s*$' },
+  },
 
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    opts = {},
+  },
+
+  require 'kickstart/plugins/barbar',
   require 'kickstart/plugins/gitsigns',
   require 'kickstart/plugins/which-key',
   require 'kickstart/plugins/telescope',
@@ -37,7 +47,7 @@ require('lazy').setup({
   require 'kickstart/plugins/treesitter',
   require 'kickstart/plugins/neo-tree',
   require 'kickstart/plugins/debug',
-  require 'kickstart/plugins/lint',
+  -- require 'kickstart/plugins/lint',
   -- require 'kickstart/plugins/neoscroll',
   require 'kickstart/plugins/undotree',
   require 'kickstart/plugins/better-escape',

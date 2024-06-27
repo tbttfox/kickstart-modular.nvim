@@ -183,6 +183,17 @@ return {
             },
           },
         },
+
+        basedpyright = {
+          settings = {
+            basedpyright = {
+              analysis = {
+                typeCheckingMode = 'standard',
+                stubPath = 'C:\\Users\\tyler\\src\\GitHub\\Stubs\\mayastubfiles_public_release\\maya2024_stubfiles\\stubs\\vscode',
+              },
+            },
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed

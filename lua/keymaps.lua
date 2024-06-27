@@ -33,6 +33,10 @@ vim.keymap.set('n', '<C-Down>', ':wincmd j<CR>', { desc = 'Resize the current wi
 vim.keymap.set('n', '<C-Left>', ':wincmd h<CR>', { desc = 'Resize the current window left' })
 vim.keymap.set('n', '<C-Right>', ':wincmd l<CR>', { desc = 'Resize the current window right' })
 
+-- Use tab S-tab to switch buffers in Normal mode
+vim.keymap.set('n', '<tab>', ':bn<CR>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<S-tab>', ':bp<CR>', { desc = 'Prev buffer' })
+
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 -- n always goes next, N always goes prev
 vim.keymap.set({ 'n', 'o', 'x', 'v' }, 'n', "'Nn'[v:searchforward]", { desc = 'NEXT search result', expr = true })
