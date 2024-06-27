@@ -19,12 +19,6 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
@@ -33,6 +27,28 @@ vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left wind
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+vim.keymap.set('n', '<C-Up>', ':wincmd k<CR>', { desc = 'Resize the current window up' })
+vim.keymap.set('n', '<C-Down>', ':wincmd j<CR>', { desc = 'Resize the current window down' })
+vim.keymap.set('n', '<C-Left>', ':wincmd h<CR>', { desc = 'Resize the current window left' })
+vim.keymap.set('n', '<C-Right>', ':wincmd l<CR>', { desc = 'Resize the current window right' })
+
+-- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+-- n always goes next, N always goes prev
+vim.keymap.set({ 'n', 'o', 'x', 'v' }, 'n', "'Nn'[v:searchforward]", { desc = 'NEXT search result', expr = true })
+vim.keymap.set({ 'n', 'o', 'x', 'v' }, 'N', "'nN'[v:searchforward]", { desc = 'PREV search result', expr = true })
+
+vim.keymap.set('n', '<leader>S', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Start :s/-ing the current word' })
+
+vim.keymap.set('n', '<F11>', ':<C-U>setlocal lcs=tab:>-,trail:-,eol:$ list! list? <CR>', { desc = 'Toggle whitespace highlighting' })
+vim.keymap.set('n', '<F10>', ':set expandtab!<CR>:%retab!<CR>', { desc = 'toggle tabs/spaces' })
+
+-- visual mode keymaps
+vim.keymap.set('v', '>', '>gv', { desc = 'indent' })
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move visual selection down' })
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move visual selection up' })
+vim.keymap.set('v', '<leader>p', [["_dP]], { desc = 'Clobber paste over visual selection' })
+vim.keymap.set('v', '<leader>d', [["_d]], { desc = 'Delete to black hole' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
