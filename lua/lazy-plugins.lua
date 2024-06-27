@@ -18,15 +18,6 @@ require('lazy').setup({
   -- keys can be used to configure plugin behavior/loading/etc.
   --
   -- Use `opts = {}` to force a plugin to be loaded.
-  --
-  --  This is equivalent to:
-  --    require('Comment').setup({})
-
-  -- "gc" to comment visual regions/lines
-  {
-    'numToStr/Comment.nvim',
-    opts = { ignore = '^\\s*$' },
-  },
 
   {
     'nvim-lualine/lualine.nvim',
@@ -47,10 +38,11 @@ require('lazy').setup({
   require 'kickstart/plugins/treesitter',
   require 'kickstart/plugins/neo-tree',
   require 'kickstart/plugins/debug',
+  require 'kickstart/plugins/undotree',
+
   -- require 'kickstart/plugins/lint',
   -- require 'kickstart/plugins/neoscroll',
-  require 'kickstart/plugins/undotree',
-  require 'kickstart/plugins/better-escape',
+  -- require 'kickstart/plugins/better-escape',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.

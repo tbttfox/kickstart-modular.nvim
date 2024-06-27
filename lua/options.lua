@@ -98,3 +98,12 @@ vim.opt.guifont = 'Hack NFM:h10'
 
 -- Put a little extra space between the lines
 vim.opt.linespace = 1
+
+-- Don't automatically put comment leader on a newline when opening
+-- This gets overwritten by the included filetype plugins
+-- so I need to remove it every time I set a filetype
+vim.api.nvim_create_autocmd({ 'FileType' }, {
+  callback = function()
+    vim.opt.formatoptions:remove 'o'
+  end,
+})

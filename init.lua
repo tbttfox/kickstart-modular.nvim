@@ -105,10 +105,5 @@ require 'lazy-bootstrap'
 -- [[ Configure and install plugins ]]
 require 'lazy-plugins'
 
--- This option gets overwritten *SOMEWHERE*
--- Don't automatically put comment leader on a newline when opening
--- vim.opt.formatoptions='jcroql' -- original values
-vim.opt.formatoptions = 'jcrql'
-
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
