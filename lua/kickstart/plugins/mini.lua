@@ -82,7 +82,7 @@ return {
       })
 
       -- Automatically make paired parnes/quotes/etc
-      require('mini.pairs').setup()
+      -- require('mini.pairs').setup()
 
       -- Add/delete/replace surroundings (brackets, quotes, etc.)
       --

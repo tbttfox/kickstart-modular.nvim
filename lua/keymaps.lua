@@ -47,6 +47,8 @@ vim.keymap.set('n', '<leader>S', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set('n', '<F11>', ':<C-U>setlocal lcs=tab:>-,trail:-,eol:$ list! list? <CR>', { desc = 'Toggle whitespace highlighting' })
 vim.keymap.set('n', '<F10>', ':set expandtab!<CR>:%retab!<CR>', { desc = 'toggle tabs/spaces' })
 
+vim.keymap.set('n', '<leader>l', [[:let @/ = "\\\<<C-r><C-w>\\\>"<cr>:set hls<cr>]], { desc = 'Light up the current word', silent = true })
+
 -- visual mode keymaps
 vim.keymap.set('v', '>', '>gv', { desc = 'indent' })
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move visual selection down' })
