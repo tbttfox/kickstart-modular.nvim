@@ -29,9 +29,81 @@ return {
       formatters_by_ft = {
         lua = { 'stylua' },
         python = { 'ruff_format' }, -- { 'isort', 'black' }
+        cpp = { 'clang-fmt-pre', 'clang-format', 'clang-fmt-post' },
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
         -- javascript = { { "prettierd", "prettier" } },
+      },
+
+      formatters = {
+
+        ['clang-fmt-pre'] = {
+          ---Replace all `#pragma omp ...` with `//#pragma omp ...`
+            format = function(self, ctx, lines, callback)
+              -- Use this variable if options should be possible
+              local _ = self.options
+              local format_erros = nil
+              local formatted_lines = vim.deepcopy(lines)
+              local pattern = '^%s*#pragma omp'
+              for i, line in ipairs(lines) do
+                if line:match(pattern) then
+                  local fmt_line = line:gsub(pattern, '//#pragma omp')
+                  formatted_lines[i] = fmt_line
+              end
+            end
+          callback(format_erros, formatted_lines)
+          end
+        },
+        ["clang-format"] = {
+          append_args = function(self, ctx)
+            local style = {
+              "BasedOnStyle: Google",
+              "BreakAfterJavaFieldAnnotations: True",
+              "AlignArrayOfStructures: Right",
+              "AlignTrailingComments: {Kind: Always}",
+              "AlignAfterOpenBracket: BlockIndent",
+              "ColumnLimit: 120",
+              "IndentWidth: 4",
+              "PointerAlignment: Left",
+            }
+            local style_str = "{"
+            for index, value in ipairs(style) do
+              style_str = style_str .. value
+              if index ~= #style then
+                style_str = style_str .. ", "
+              end
+            end
+            style_str = style_str .. "}"
+
+            return {
+              "--style", style_str,
+            }
+          end,
+        },
+        ['clang-fmt-post'] = {
+          ---Replace all `//#pragma omp ...` with `#pragma omp ...`
+          format = function(self, ctx, lines, callback)
+            -- Use this variable if options should be possible
+            local _ = self.options
+            local format_erros = nil
+            local formatted_lines = vim.deepcopy(lines)
+            local pattern = '//%s#pragma omp'
+            for i, line in ipairs(formatted_lines) do
+              if line:match(pattern) then
+                formatted_lines[i] = line:gsub(pattern, '#pragma omp')
+              end
+            end
+          callback(format_erros, formatted_lines)
+          end,
+        },
+
+        --[[
+        clang_format = {
+          command = "clang-format",
+          prepend_args = { "--style", "Google" },
+        },
+        ]]--
+
       },
     },
   },
