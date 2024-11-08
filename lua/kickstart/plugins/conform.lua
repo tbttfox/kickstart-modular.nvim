@@ -62,8 +62,12 @@ return {
               "AlignArrayOfStructures: Right",
               "AlignTrailingComments: {Kind: Always}",
               "AlignAfterOpenBracket: BlockIndent",
-              "ColumnLimit: 120",
+              "ColumnLimit: 100",
+              "ReflowComments:  True",
+              "PenaltyBreakComment: 0",
+              "PenaltyBreakOpenParenthesis: 1",
               "IndentWidth: 4",
+              "InsertBraces: True",
               "PointerAlignment: Left",
             }
             local style_str = "{"
@@ -75,9 +79,7 @@ return {
             end
             style_str = style_str .. "}"
 
-            return {
-              "--style", style_str,
-            }
+            return {"--style", style_str}
           end,
         },
         ['clang-fmt-post'] = {
