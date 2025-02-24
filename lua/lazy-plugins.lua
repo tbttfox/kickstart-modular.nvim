@@ -40,6 +40,7 @@ require('lazy').setup({
   require 'kickstart/plugins/treesitter',
   require 'kickstart/plugins/neo-tree',
   require 'kickstart/plugins/debug',
+  require 'kickstart/plugins/bqf',
 
   -- require 'kickstart/plugins/lint',
   -- require 'kickstart/plugins/neoscroll',
