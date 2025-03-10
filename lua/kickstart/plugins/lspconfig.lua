@@ -188,12 +188,39 @@ return {
           settings = {
             basedpyright = {
               analysis = {
+                -- ignore = { '*' }, -- I'm using ruff for the linting stuff
                 typeCheckingMode = 'standard',
+                disableOrganizeImports = true,
                 stubPath = 'C:\\blur\\dev\\GitHub\\Stubs\\stubs\\maya',
+                extraPaths = {
+                  'C:\\blur\\dev\\GitHub\\Libraries\\casement',
+                  'C:\\blur\\dev\\GitHub\\Libraries\\hab',
+                  'C:\\blur\\dev\\GitLab\\blixar',
+                  'C:\\blur\\dev\\GitLab\\blur3d',
+                  'C:\\blur\\dev\\GitLab\\blurdev',
+                  'C:\\blur\\dev\\GitLab\\blurl',
+                  'C:\\blur\\dev\\GitLab\\cross3d',
+                  'C:\\blur\\dev\\GitLab\\cute',
+                  'C:\\blur\\dev\\GitLab\\dcc',
+                  'C:\\blur\\dev\\GitLab\\harbie',
+                  'C:\\blur\\dev\\GitLab\\harry',
+                  'C:\\blur\\dev\\GitLab\\heracles',
+                  'C:\\blur\\dev\\GitLab\\irreel',
+                  'C:\\blur\\dev\\GitLab\\licensed',
+                  'C:\\blur\\dev\\GitLab\\pillar',
+                  'C:\\blur\\dev\\GitLab\\preditor',
+                  'C:\\blur\\dev\\GitLab\\projects',
+                  'C:\\blur\\dev\\GitLab\\studio',
+                  'C:\\blur\\dev\\GitLab\\tools',
+                  'C:\\blur\\dev\\GitLab\\trax',
+                },
               },
             },
           },
         },
+
+        ruff = { settings = {} },
+
       }
 
       -- Ensure the servers and tools above are installed
@@ -213,6 +240,8 @@ return {
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
       require('mason-lspconfig').setup {
+        ensure_installed = {},
+        automatic_installation = true,
         handlers = {
           function(server_name)
             local server = servers[server_name] or {}

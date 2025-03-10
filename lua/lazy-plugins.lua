@@ -14,6 +14,7 @@ require('lazy').setup({
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   'tpope/vim-abolish', -- change var types, and subsitute over all common capitalizations
   'HiPhish/rainbow-delimiters.nvim', -- Rainbow Parentheses
+  'kdheepak/lazygit.nvim', -- Open the lazygit cmd line tool
 
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
@@ -41,6 +42,8 @@ require('lazy').setup({
   require 'kickstart/plugins/neo-tree',
   require 'kickstart/plugins/debug',
   require 'kickstart/plugins/bqf',
+  require 'kickstart/plugins/lsp-toggle',
+  require 'kickstart/plugins/borderline',
 
   -- require 'kickstart/plugins/lint',
   -- require 'kickstart/plugins/neoscroll',
