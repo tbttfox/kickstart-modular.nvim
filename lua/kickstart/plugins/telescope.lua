@@ -63,6 +63,27 @@ return {
         --   },
         -- },
         -- pickers = {}
+
+        defaults = {
+          -- Show the full path to the current file at the top of the preview window
+          dynamic_preview_title = true,
+
+          -- Display as: filename (relative/path/to/file/filename)
+          path_display = function(opts, path)
+            -- vim.uv.cwd() returns the path with the drive letter uppercase
+            -- but `path` is drive letter lowercase. I don't know if that's a
+            -- guarantee, so I'll just cast both to first-upper
+            local first_to_upper = function(str)
+              return (str:gsub('^%l', string.upper))
+            end
+
+            local ppath = require 'plenary.path'
+            local tail = require('telescope.utils').path_tail(path)
+
+            local bbbb = ppath:new(first_to_upper(path)):make_relative(first_to_upper(vim.uv.cwd()))
+            return string.format('%s (%s)', tail, bbbb)
+          end,
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -75,7 +96,7 @@ return {
       -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
-      require('telescope').load_extension('undo')
+      require('telescope').load_extension 'undo'
 
       -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'

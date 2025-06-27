@@ -192,6 +192,7 @@ return {
                 typeCheckingMode = 'standard',
                 disableOrganizeImports = true,
                 stubPath = 'C:\\blur\\dev\\GitHub\\Stubs\\stubs\\maya',
+                pythonVersion = "3.10",
                 extraPaths = {
                   'C:\\blur\\dev\\GitHub\\Libraries\\casement',
                   'C:\\blur\\dev\\GitHub\\Libraries\\hab',
